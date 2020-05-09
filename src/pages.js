@@ -1,3 +1,4 @@
+export { default as Page_00 } from './pages/00/index.svelte'
 export { default as Page_01 } from './pages/01/index.svelte'
 export { default as Page_02 } from './pages/02/index.svelte'
 export { default as Page_03 } from './pages/03/index.svelte'
