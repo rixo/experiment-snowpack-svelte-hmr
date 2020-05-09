@@ -7,12 +7,22 @@
   },
   "webDependencies": {},
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-import-meta": "^7.8.3",
+    "@babel/plugin-transform-modules-systemjs": "^7.9.6",
+    "@rollup/plugin-babel": "^5.0.0",
     "@snowpack/app-scripts-svelte": "^0.2.6",
+    "@snowpack/plugin-babel": "^0.3.0",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/svelte": "^3.0.0",
     "jest": "^25.4.0",
     "parcel-bundler": "^1.12.4",
-    "snowpack": "^2.0.0-0",
-    "svelte": "^3.21.0"
-  }
+    "rollup-plugin-hot": "^0.0.22-0",
+    "rollup-plugin-svelte-hot": "^0.6.3-0",
+    "snowpack": "rixo/snowpack#snowpack-v2.0.0-beta.7-gitpkg",
+    "svelte": "^3.21.0",
+    "systemjs": "^6.3.1"
+  },
+  "dependencies": {}
 }

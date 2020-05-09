@@ -1,30 +1,34 @@
-# New Project
+# Snowpack + Svelte HMR
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+**Status:** a glance into the future.
 
-## Available Scripts
+Copy paste into your terminal:
 
-### npm start
+```bash
+git clone git@github.com:rixo/experiment-snowpack-svelte-hmr.git
+cd experiment-snowpack-svelte-hmr
+yarn
+yarn start
+```
 
-Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
+Open in your browser: http://localhost:3000
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+Watch 99 \* 5 components being live compiled by Snowpack and loaded into your browser (have dev tools open for best experience).
 
-### npm test
+Reload. Faster, right? Snowpack dev server caches built files, and nothing has changed since last time.
 
-Launches the test runner in the interactive watch mode.
-See the section about running tests for more information.
+Open random Svelte component in IDE.
 
-### npm run build
+Edit.
 
-Builds the app for production to the `dist/` folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+_Have tissues ready\*._
 
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
+Save.
 
-### Q: What about Eject?
+Yup.
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+This was HMR (when minimal rebuild time).
+
+You didn't even see what happened, did you? Do it again ;)
+
+_\* for your eyes, you perv!_
