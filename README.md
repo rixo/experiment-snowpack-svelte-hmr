@@ -13,11 +13,11 @@ yarn start
 
 Open in your browser: http://localhost:3000
 
-Watch 99 \* 5 components being live compiled by Snowpack and loaded into your browser (have dev tools open for best experience).
+Watch as 99 \* 5 components are being live compiled by Snowpack and loaded into your browser (have dev tools' network tab open for best experience).
 
 Reload. Faster, right? Snowpack dev server caches built files, and nothing has changed since last time.
 
-Open random Svelte component in IDE.
+Open random Svelte component in IDE. (Just be sure that's a component that is currently rendered into the browser...)
 
 Edit.
 
