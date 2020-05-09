@@ -5945,15 +5945,15 @@ rollup-plugin-hot@^0.0.9-0:
     rollup-pluginutils "^2.8.2"
     ws "^7.1.2"
 
-rollup-plugin-svelte-hot@^0.6.3-0:
-  version "0.6.3-0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-svelte-hot/-/rollup-plugin-svelte-hot-0.6.3-0.tgz#41b25ba3b50be6e72770e23eee7ea45e63116d3d"
+rollup-plugin-svelte-hot@^0.6.3-1:
+  version "0.6.3-1"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-svelte-hot/-/rollup-plugin-svelte-hot-0.6.3-1.tgz#16a063633280606ed9c1fb332e818253993f41dd"
   dependencies:
     require-relative "^0.8.7"
     rollup-plugin-hot "^0.0.9-0"
     rollup-pluginutils "^2.8.2"
     sourcemap-codec "^1.4.8"
-    svelte-hmr "^0.7.0"
+    svelte-hmr "^0.7.1-0"
   optionalDependencies:
     nollup ">=0.8.4"
 
@@ -6503,9 +6503,9 @@ supports-hyperlinks@^2.0.0:
     has-flag "^4.0.0"
     supports-color "^7.0.0"
 
-svelte-hmr@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.7.0.tgz#a287ad8b1bec984fbd08e882e34b297a66c7194e"
+svelte-hmr@^0.7.1-0:
+  version "0.7.1-0"
+  resolved "https://registry.yarnpkg.com/svelte-hmr/-/svelte-hmr-0.7.1-0.tgz#3a971a7c143e16280e85d2951820eabc7eda8887"
 
 svelte@^3.21.0:
   version "3.22.2"

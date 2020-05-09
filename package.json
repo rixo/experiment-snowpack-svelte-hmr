@@ -19,7 +19,7 @@
     "jest": "^25.4.0",
     "parcel-bundler": "^1.12.4",
     "rollup-plugin-hot": "^0.0.22-0",
-    "rollup-plugin-svelte-hot": "^0.6.3-0",
+    "rollup-plugin-svelte-hot": "^0.6.3-1",
     "snowpack": "rixo/snowpack#snowpack-v2.0.0-beta.7-gitpkg",
     "svelte": "^3.21.0",
     "systemjs": "^6.3.1"
