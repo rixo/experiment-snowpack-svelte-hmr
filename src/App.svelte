@@ -1,4 +1,5 @@
 <script>
+	// import './app.css'
 	import * as pages from './pages.js'
 
 	let currentCmp

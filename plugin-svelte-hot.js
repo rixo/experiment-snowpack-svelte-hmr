@@ -2,8 +2,6 @@
 const fs = require('fs')
 const Svelte = require('rollup-plugin-svelte-hot')
 
-const babel = require('@babel/core')
-
 const svelte = Svelte({
   dev: process.env.NODE_ENV !== 'production',
   hot: true,
@@ -25,8 +23,6 @@ exports.build = async function build(file) {
     code,
     file
   ))
-
-  code = await wrapSystemJs(code)
 
   return { result: code }
 }
