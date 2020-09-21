@@ -1,32 +1,100 @@
-// const svelte = require('svelte/compiler')
+const svelte = require('svelte/compiler')
+const svelteRollupPlugin = require('rollup-plugin-svelte')
 const fs = require('fs')
-const Svelte = require('rollup-plugin-svelte-hot')
+const path = require('path')
+const { createMakeHot } = require('svelte-hmr')
 
-const babel = require('@babel/core')
+const makeHot = createMakeHot({ walk: svelte.walk })
 
-const svelte = Svelte({
-  dev: process.env.NODE_ENV !== 'production',
-  hot: true,
-})
+module.exports = function plugin(snowpackConfig, pluginOptions = {}) {
+  // Support importing Svelte files when you install dependencies.
+  snowpackConfig.installOptions.rollup.plugins.push(
+    svelteRollupPlugin({ include: '**/node_modules/**' })
+  )
 
-const wrapSystemJs = async code => {
-  const cwd = process.cwd()
-  const result = await babel.transform(code, { cwd })
-  return result.code
-}
+  let svelteOptions
+  let preprocessOptions
+  const userSvelteConfigLoc = path.join(process.cwd(), 'svelte.config.js')
+  if (fs.existsSync(userSvelteConfigLoc)) {
+    const userSvelteConfig = require(userSvelteConfigLoc)
+    const { preprocess, ..._svelteOptions } = userSvelteConfig
+    preprocessOptions = preprocess
+    svelteOptions = _svelteOptions
+  }
+  // Generate svelte options from user provided config (if given)
+  svelteOptions = {
+    dev: process.env.NODE_ENV !== 'production',
+    css: false,
+    ...svelteOptions,
+    ...pluginOptions,
+  }
 
-exports.build = async function build(file) {
-  let code = await fs.promises.readFile(file, 'utf8')
-
-  ;({ code } = await svelte.transform.call(
-    {
-      warn: (...args) => console.warn(...args),
+  return {
+    name: '@snowpack/plugin-svelte',
+    resolve: {
+      input: ['.svelte'],
+      output: ['.js', '.css'],
     },
-    code,
-    file
-  ))
+    knownEntrypoints: [
+      'svelte/internal',
+      'svelte/store',
+      'svelte/easing',
+      'svelte/motion',
+      'svelte/transition',
+      'svelte/animate',
+      'svelte-hmr/runtime/hot-api-esm.js',
+      'svelte-hmr/runtime/proxy-adapter-dom.js',
+    ],
+    async load({ filePath, isHmrEnabled }) {
+      let codeToCompile = fs.readFileSync(filePath, 'utf-8')
+      // PRE-PROCESS
+      if (preprocessOptions) {
+        codeToCompile = (
+          await svelte.preprocess(codeToCompile, preprocessOptions, {
+            filename: filePath,
+          })
+        ).code
+      }
+      // COMPILE
+      const compileOptions = {
+        ...svelteOptions,
+        outputFilename: filePath,
+        filename: filePath,
+      }
 
-  code = await wrapSystemJs(code)
+      const compiled = svelte.compile(codeToCompile, compileOptions)
 
-  return { result: code }
+      const { js, css } = compiled
+
+      const { sourceMaps } = snowpackConfig.buildOptions
+      const output = {
+        '.js': {
+          code: js.code,
+          map: sourceMaps ? js.map : undefined,
+        },
+      }
+
+      if (isHmrEnabled) {
+        const hotOptions = {
+          absoluteImports: false,
+        }
+        output['.js'].code = makeHot({
+          id: filePath,
+          compiledCode: compiled.js.code,
+          hotOptions,
+          compiled,
+          originalCode: codeToCompile,
+          compileOptions,
+        })
+      }
+
+      if (!svelteOptions.css && css && css.code) {
+        output['.css'] = {
+          code: css.code,
+          map: sourceMaps ? css.map : undefined,
+        }
+      }
+      return output
+    },
+  }
 }

@@ -1,6 +1,6 @@
 # Snowpack + Svelte HMR
 
-**Status:** a glance into the future.
+**Status:** ~~a glance into the future.~~ **2020-09-22** Now using stock Snowpack and `svelte-hmr`. Probably headed to become a proper plugin soon.
 
 Copy paste into your terminal:
 
