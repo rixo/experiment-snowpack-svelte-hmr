@@ -4,7 +4,7 @@ module.exports = {
     src: '/_dist_',
   },
   devOptions: {
-    open: 'none',
+    // open: 'none',
   },
   plugins: [
     './plugin-svelte-hot',
