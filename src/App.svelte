@@ -5,7 +5,6 @@
 
 	const go = cmp => () => {
 		currentCmp = cmp
-		console.log(currentCmp.name)
 	}
 </script>
 
